@@ -1,16 +1,18 @@
 package br.com.samaan.spring_boot_rest_api.web.controller;
 
-import br.com.samaan.spring_boot_rest_api.entity.User;
-import br.com.samaan.spring_boot_rest_api.service.UserService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.http.HttpStatus.CREATED;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.samaan.spring_boot_rest_api.entity.User;
+import br.com.samaan.spring_boot_rest_api.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/users")
@@ -36,26 +38,6 @@ public class UserController {
         Optional<User> user = userService.getUserById(id);
         return user.map( u -> ResponseEntity.ok(u))
                    .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping("")
-    @ResponseStatus(CREATED)
-    public User createUser(@RequestBody User user) {
-        log.info("process=create-user, user_email={}", user.getEmail());
-        return userService.createUser(user);
-    }
-
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        log.info("process=update-user, user_id={}", id);
-        user.setId(id);
-        return userService.updateUser(user);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        log.info("process=delete-user, user_id={}", id);
-        userService.deleteUser(id);
     }
 
 }

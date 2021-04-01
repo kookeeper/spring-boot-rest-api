@@ -1,41 +1,26 @@
 package br.com.samaan.spring_boot_rest_api.service;
 
-import br.com.samaan.spring_boot_rest_api.entity.User;
-import br.com.samaan.spring_boot_rest_api.repo.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@Transactional
-public class UserService {
-    private final UserRepository userRepository;
+import org.springframework.stereotype.Service;
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+import br.com.samaan.spring_boot_rest_api.entity.User;
+
+@Service
+public class UserService {
+
+	final User user1 = new User(1L, "Nome", "e-mail", LocalDateTime.MIN, LocalDateTime.MAX);
+	final User user2 = new User(2L, "Nomes", "e-mails", LocalDateTime.MIN, LocalDateTime.MAX);
 
     public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+		return Optional.of(user1);
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+    	return Arrays.asList(user1, user2);
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
-
-    public User updateUser(User user) {
-        return userRepository.save(user);
-    }
-
-    public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
-    }
 }

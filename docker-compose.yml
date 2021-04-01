@@ -8,22 +8,6 @@ services:
       - "18080:8080"
       - "18787:8787"
     restart: always
-    depends_on:
-      - postgresdb
-
-  postgresdb:
-    image: postgres
-    container_name: postgresdb
-    environment:
-      - POSTGRES_USER=siva
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=appdb
-      - PGDATA=/data/postgres
-    volumes:
-      - ~/data/postgres:/data/postgres
-    ports:
-      - "5432:5432"
-    restart: unless-stopped
 
   grafana:
     image: grafana/grafana

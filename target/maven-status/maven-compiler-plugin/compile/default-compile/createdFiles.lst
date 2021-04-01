@@ -1,0 +1,6 @@
+br\com\samaan\spring_boot_rest_api\SpringBootRestApiApplication.class
+br\com\samaan\spring_boot_rest_api\web\controller\UserController.class
+br\com\samaan\spring_boot_rest_api\config\SwaggerConfig.class
+br\com\samaan\spring_boot_rest_api\service\UserService.class
+br\com\samaan\spring_boot_rest_api\entity\User.class
+br\com\samaan\spring_boot_rest_api\entity\User$UserBuilder.class
