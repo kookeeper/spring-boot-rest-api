@@ -27,3 +27,17 @@ oc delete all --selector app=spring-boot-rest-api
 oc new-app samaanfilho/spring-boot-rest-api:1.0.3
 
 oc expose service/spring-boot-rest-api
+
+
+
+
+
+
+
+crc cleanup
+crc setup
+crc start
+oc login -u developer https://api.crc.testing:6443
+oc new-project projeto1
+oc new-app apt:1.0.0
+oc expose service/apt
