@@ -37,6 +37,10 @@ oc expose service/spring-boot-rest-api
 crc cleanup
 crc setup
 crc start
+
+@FOR /f "tokens=*" %i IN ('crc oc-env') DO @call %i
+oc login -u developer https://api.crc.testing:6443
+
 oc login -u developer https://api.crc.testing:6443
 oc new-project projeto1
 oc new-app apt:1.0.0
