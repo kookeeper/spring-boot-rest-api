@@ -44,10 +44,12 @@ crc start
 
 oc login -u developer https://api.crc.testing:6443
 
-oc login -u developer https://api.crc.testing:6443
-
 oc new-project projeto1
 
-oc new-app apt:1.0.0
+oc new-build --binary=true --name spring-boot-rest-api
+
+oc start-build spring-boot-rest-api --from-dir .
+
+oc new-app spring-boot-rest-api --allow-missing-imagestream-tags
 
 oc expose service/apt
